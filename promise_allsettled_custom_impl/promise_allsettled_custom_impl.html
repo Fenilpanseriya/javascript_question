@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>JavaScript Promise Object</h1>
+<h2>The Promise.allSettled() Method</h2>
+<p id="demo"></p>
+
+<script>
+// Create a Promise
+const myPromise1 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 2000, "King");
+});
+
+// Create another Promise
+const myPromise2 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 1000, "Queen");
+});
+//lets reject one promise
+const myPromise3 = new Promise((resolve, reject) => {
+  setTimeout(reject, 3000, "Queen1");
+});
+const my4= new Promise((resolve, reject) => {
+  setTimeout(reject, 10000, "Queen2");
+});
+
+// Run when All promises are settled
+let arr=[myPromise1,myPromise2,myPromise3,my4];
+function allSettled(arr){
+    return new Promise((resolve)=>{
+        let results=[];
+        let count=0;
+        if(arr.length===0){
+            resolve(res);
+            return;
+        }
+        arr.forEach((promise,index )=> {
+            Promise.resolve(promise)
+                .then((value) => {
+                    console.log(value)
+                    results[index] = { status: 'fulfilled', value };
+                })
+                .catch((reason) => {
+                    console.log(reason)
+                    results[index] = { status: 'rejected', reason };
+                })
+                .finally(() => {
+                    count++;
+                    if (count=== arr.length) {
+                        myDisplay(count);
+                        resolve(results);
+                    } 
+                });
+            });
+    })
+}
+const allset=allSettled(arr);
+// Funtion to run when a Promise is settled:
+function myDisplay(some) {
+  document.getElementById("demo").innerHTML += some;
+}
+</script>
+
+</body>
+</html>
