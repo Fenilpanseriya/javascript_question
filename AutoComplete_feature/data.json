@@ -1,0 +1,14 @@
+{
+    "fruits": [
+    {"name":"Banana"},
+    {"name":"Apple"},
+    {"name":"Orange"},
+    {"name":"Grape"},
+    {"name":"Mango"},
+    {"name":"Pineapple"},
+    {"name":"Watermelon"},
+    {"name":"Strawberry"},
+    {"name":"Blueberry"}
+
+  ]
+  }
