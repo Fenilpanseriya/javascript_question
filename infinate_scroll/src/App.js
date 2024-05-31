@@ -4,68 +4,64 @@ import "./App.css";
 function App() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [showLoading, setShowLoading] = useState(false);
-  const [index,setIndex]=useState(0)
+  const [index, setIndex] = useState(0);
   const bottom = useRef(null);
-
 
   useEffect(() => {
     async function fetchInitialData() {
       const res = await fetch(`https://medicine-api-nrdd.onrender.com/medicine-data`);
       const data = await res.json();
+
       setPosts(data);
+      setIndex(data.length);
     }
     fetchInitialData();
   }, []);
 
-  const addMoreData=async()=>{
+  const addMoreData = async () => {
     setLoading(true);
-    const res = await fetch(`https://medicine-api-nrdd.onrender.com/medicine-data?limit=${7}&skip=${index}`);
+    const res = await fetch(`https://medicine-api-nrdd.onrender.com/medicine-data?limit=7&skip=${index}`);
     const data = await res.json();
-    setPosts((prevPosts) => [...prevPosts, ...data]);
-    setIndex((prev)=>prev+7)
+    let uniqueData=new Set([...posts,...data])
+    setPosts([...uniqueData]);
+    setIndex(posts?.length + 7);
     setLoading(false);
-    setShowLoading(false);
-  }
+  };
 
   useEffect(() => {
+    console.log("hello")
     const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
+      if (entries[0].isIntersecting && !loading) {
         addMoreData();
       }
     });
-    if(bottom.current){
+
+    if (bottom.current) {
       observer.observe(bottom.current);
     }
-    
 
-    
-  }, []);
+    return () => {
+      if (bottom.current) {
+        observer.unobserve(bottom.current);
+      }
+    };
+  }, [loading]);
 
   return (
     <div className="infinite-scroll-container">
       <ul>
         {posts.map((post) => (
-          <>
-          <p>{post.id}</p>
-          <p>{post.name}</p>
-          <p>{post["price(₹)"]}</p>
-          <br/>
-          </>
+          <li key={post.id}>
+            <p>{post.id}</p>
+            <p>{post.name}</p>
+            <p>{post["price(₹)"]}</p>
+          </li>
         ))}
       </ul>
-      {loading && (
-        <div
-          className={showLoading ? "loading" : ""}
-          style={{ opacity: showLoading ? 1 : 0 }}
-        >
-          Loading...
-        </div>
-      )}
+      {loading && <div className="loading">Loading...</div>}
       <div ref={bottom} />
     </div>
   );
 }
 
 export default App;
-
