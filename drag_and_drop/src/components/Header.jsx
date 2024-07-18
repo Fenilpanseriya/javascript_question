@@ -10,11 +10,7 @@ const Header = forwardRef(({status=""},ref) => {
         
     }
     const handleClick=(e)=>{
-        if(ref.current){
-            ref.current.value=''
-        }
-        let todos= JSON.parse(localStorage.getItem("todo")) || [];
-        localStorage.setItem("todo",JSON.stringify([...todos,{name:name,id:todos.length+1}]));
+        
     }
   return (
     <div className="header">

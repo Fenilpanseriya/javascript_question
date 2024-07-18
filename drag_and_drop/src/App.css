@@ -23,13 +23,39 @@
  }
 
  .columns{
+  box-sizing: border-box;
   flex:1;
   height:100%;
   width: 100%;
   display: flex;
   justify-content: start;
-  align-items: center;
   flex-wrap: wrap;
-  background-color: lightgreen;
   gap: 10px;
+ }
+
+ .taskcard{
+  box-sizing: border-box;
+  padding: 0.5rem;
+  box-shadow: 0 0 8px rgba(0,0, 0, 0.8);
+  background-color: cadetblue;
+  color: black;
+  width: 80%;
+  margin: 0 auto;
+ }
+
+ .taskcard:hover{
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out
+ }
+
+ .show{
+  text-align: center;
+  height: 30px;
+  border: 1px solid black;
+  width: 90%;
+  margin: 0 auto;
+ }
+
+ .hide{
+  opacity: 0;
  }

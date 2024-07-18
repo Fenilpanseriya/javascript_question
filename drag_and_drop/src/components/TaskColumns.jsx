@@ -1,27 +1,18 @@
-import React, { forwardRef, useEffect, useState } from 'react'
+import React, { forwardRef } from 'react'
+import Taskcard from './Taskcard';
 
-const TaskColumns = forwardRef(({status},ref) => {
-    const [task,setTask]=useState([]);
-    useEffect(()=>{
-        setTask(JSON.parse(localStorage.getItem(status)))
-        console.log(task)
-    },[])
+const TaskColumns = forwardRef(({status,tasks=[],setDraggedCard,column,setIndex,setColumn},ref) => {
+    
     
   return (
-    <>
-        <div style={{width:"30%",gap:"8px",backgroundColor:"lightblue",border:"2px solid black",alignItems:"center",margin:"0 auto"}}>
-            <h1>{status}</h1>
-            {
-                task?.map((item,index)=>{
-                    return <div key={item.id} style={{padding:"1rem",color:"black",backgroundColor:"blue",boxShadow:"0 0 8px rgba(0,0,0,0.5)"}}>
-                        <h2>
-                            {item.name}
-                        </h2>
-                    </div>
-                })
-            }
-        </div>
-    </>
+    <div style={{display:'flex',flex:1,width:"30%",backgroundColor:"lightblue",gap:"10px",flexDirection:"column",textAlign:"center"}}>
+        <h1>{status}</h1>
+        {
+            tasks?.map((task,index)=>{
+                return <Taskcard key={task.id} task={task} setColumn={setColumn} index={index} column={column} setDraggedCard={setDraggedCard} setIndex={setIndex}/>
+            })
+        }
+    </div>
   )
 })
 
