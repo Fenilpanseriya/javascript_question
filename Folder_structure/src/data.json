@@ -1,0 +1,89 @@
+[
+    {
+        "name": "Folder 1",
+        "id": 1,
+        "type": "folder",
+        "isFolder": true,
+        
+        "children": [
+            {
+                "name": "File 1",
+                "id": 2,
+                "type": "file",
+                "isFolder": false
+            },
+            {
+                "name": "File 2",
+                "id": 3,
+                "type": "file",
+                "isFolder": false
+            }
+        ]
+    },
+    {
+        "name": "Folder 2",
+        "id": 4,
+        "type": "folder",
+        "isFolder": true,
+        
+        "children": [
+            {
+                "name": "File 3",
+                "id": 5,
+                "type": "file",
+                "isFolder": false
+            },
+            {
+                "name": "Folder 3",
+                "id": 6,
+                "type": "folder",
+                "isFolder": true,
+                
+                "children": [
+                    {
+                        "name": "File 4",
+                        "id": 7,
+                        "type": "file",
+                        "isFolder": false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Folder 4",
+        "id": 8,
+        "type": "folder",
+        "isFolder": true,
+        
+        "children": [
+            {
+                "name": "File 5",
+                "id": 9,
+                "type": "file",
+                "isFolder": false
+            },
+            {
+                "name": "File 6",
+                "id": 10,
+                "type": "file",
+                "isFolder": false
+            },
+            {
+                "name": "Folder 5",
+                "id": 11,
+                "type": "folder",
+                "isFolder": true,
+                
+                "children": [
+                    {
+                        "name": "File 7",
+                        "id": 12,
+                        "type": "file",
+                        "isFolder": false
+                    }
+                ]
+            }
+        ]
+    }
+]
